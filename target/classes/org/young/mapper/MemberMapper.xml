@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.young.mapper.MemberMapper">
+  	<insert id= "createMember">
+  		insert into tbl_member(userid,userpw,username,email) values(#{userid}, #{userpw}, #{username}, #{email})
+  	</insert>
+  	<select id="idCheck" resultType="String">
+  		select userid from tbl_member where userid=#{userid}
+  	</select>
+  		<!--로그인 정보 조회  -->
+	<select id="login" resultType="org.young.domain.MemberVO">
+		select userid,userpw,username from tbl_member where userid=#{userid} and userpw=#{userpw}
+	</select>
+  
+  </mapper>

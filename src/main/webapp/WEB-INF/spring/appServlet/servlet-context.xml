@@ -30,14 +30,14 @@
 
     </beans:bean>
     <!-- 인터셉터 설정 -->
-	<beans:bean id = "loginInterceptor" class ="org.young.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id = "authInterceptor" class ="org.young.interceptor.AuthInterceptor"></beans:bean>
 	 <interceptors>
    	<interceptor>	
    		<mapping path="/board/*"/>
    		<exclude-mapping path="/member/login"/>
    		<exclude-mapping path="/member/loginPost"/>
 
-   		<beans:ref bean="loginInterceptor"/>
+   		<beans:ref bean="authInterceptor"/>
    	</interceptor>
    </interceptors>
 	

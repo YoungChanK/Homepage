@@ -11,5 +11,5 @@ public interface MemberService {
 	//로그인 정보 조회
 	public MemberVO login(MemberVO member);
 	//로그아웃
-	public void Logout(HttpSession session);
+
 }

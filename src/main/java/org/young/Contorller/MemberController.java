@@ -69,9 +69,10 @@ public class MemberController {
 	public void LoginGet()throws Exception{
 		logger.info("로그인 화면 이동");
 	}
-	@RequestMapping(value="logout", method=RequestMethod.GET)
+	@RequestMapping(value="logout")
 	public String Logout(HttpSession session)throws Exception{
-		meservice.Logout(session);
+//		meservice.Logout(session);
+		session.invalidate();
 		logger.info("세션값" + session.getId());
 /*		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/home");

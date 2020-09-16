@@ -6,7 +6,9 @@ public class BoardVO {
 	private String content;
 	private String writer;
 	private String regdate;
-	private int viewcnt;
+	private String fileName;
+	private String filePath;
+
 	public int getBno() {
 		return bno;
 	}
@@ -25,6 +27,20 @@ public class BoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getWriter() {
 		return writer;
 	}
@@ -37,16 +53,11 @@ public class BoardVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public int getViewcnt() {
-		return viewcnt;
-	}
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
-	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", viewcnt=" + viewcnt + "]";
+				+ regdate + ", fileName=" + fileName + ", filePath=" + filePath + "]";
 	}
 
 }

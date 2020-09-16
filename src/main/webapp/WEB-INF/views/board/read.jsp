@@ -7,27 +7,32 @@
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/read.js"></script>
 <script type="text/javascript" src="../resources/js/ajaxtest.js"></script>
-<link  rel="stylesheet" type="text/css" href="../resources/css/read.css">
+<!-- <link  rel="stylesheet" type="text/css" href="../resources/css/read.css"> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-	<form role="form">
+	<form role="form" >
 		<input type="hidden" name="bno" id="bno" value="${read.bno}">
-		<input type="text"   name="pageNum" value="${cri.pageNum}">
+<%-- 		<input type="text"   name="pageNum" value="${cri.pageNum}"> --%>
 		<table border="1">
 			<tr>
 				<td colspan="2">${read.title}</td>
 			</tr>
 			<tr>
-				<td>${read.writer}</td>
-				<td>${read.viewcnt}</td>
+				<td colspan="2">${read.writer}</td>
+	
 			</tr>
 			<tr>
 				<td colspan="2">${read.content}</td>
 			</tr>
-
+			<tr>
+				<td colspan="2">${read.fileName}</td>
+			</tr>
+			<tr>
+				<td colspan="2"><a href ="/young/upload/download?fileName=${read.filePath}">${read.fileName}</a></td>
+			</tr>
 			<tr>
 				<td colspan="2">
 					<button type="submit" class="btn-warning">수정</button>
@@ -37,7 +42,7 @@
 			</tr>
 		</table>
 	</form>
-	<div class="uploadResult">
+	<!-- <div class="uploadResult">
 		<ul>
 		
 		</ul>
@@ -69,7 +74,7 @@
 			<button type="button" id="closeBtn">닫기</button>
 
 		</div>
-	</div>
+	</div> -->
 	
 </body>
 </html>

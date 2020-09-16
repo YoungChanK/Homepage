@@ -1,7 +1,5 @@
 package org.young.Contorller;
 
-
-
 import org.young.domain.MemberVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +21,7 @@ import org.young.service.MemberServiceImpl;
 public class MemberController {
 	private static final Logger logger=LoggerFactory.getLogger(MemberController.class);
 	@Autowired
-	private MemberServiceImpl meservice;
+	private MemberService meservice;
 	
 	//회원가입 화면
 	@RequestMapping(value="member", method=RequestMethod.GET)
@@ -32,8 +30,16 @@ public class MemberController {
 	}
 	//회원가입 처리
 	@RequestMapping(value="member", method=RequestMethod.POST)
-	public void MemberPost(MemberVO vo)throws Exception{
+	public String MemberPost(MemberVO vo)throws Exception{
+		logger.info(vo.toString());
 		meservice.createMember(vo);
+	
+	
+		return "redirect:/member/login";
+		
+//		MemberVO member=meservice.createMember(vo);
+		
+	
 	}
 	@ResponseBody
 	@RequestMapping(value = "idCheck",method = RequestMethod.POST)
@@ -65,19 +71,22 @@ public class MemberController {
 	//로그인처리
 		@RequestMapping(value="loginPost", method=RequestMethod.POST)
 		public String LoginPost(MemberVO member,Model model,HttpServletRequest request)throws Exception{
-			HttpSession session = request.getSession();    //인터셉터
+			HttpSession session = request.getSession();    
 
 			logger.info("로그인 처리");
 			MemberVO vo= meservice.login(member);
 			//만약에 인터셉터를 사용하지 않고 로그인처리를 하고자 할때 컨트롤러에서 아래처럼 작성
 			if(vo !=null) { //로그인되었으면
 				session.setAttribute("login",vo);
+				session.setAttribute("userid",vo.getUserid());
 				logger.info("세션값 : " + session.getAttribute("login"));
-				return "redirect:/member/main";
+				logger.info("ID값 : " + session.getAttribute("userid"));
+				return "redirect:/board/list";
 				}
 			else { //로그인이 되어 있지않았으면 login.jsp로 이동
 				logger.info("로그인실패");
 				return "redirect:/member/login";
 			}		
 		}
+	
 }

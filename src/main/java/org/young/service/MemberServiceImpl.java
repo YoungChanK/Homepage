@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void createMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		mmapper.createMember(vo);
+		 mmapper.createMember(vo);
 		
 	}
 

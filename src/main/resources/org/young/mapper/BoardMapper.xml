@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.young.mapper.BoardMapper">
+	<insert id="create">
+		insert into tbl_board(bno,title,content,writer,fileName,filePath)
+		values(#{bno},#{title},#{content},#{writer},#{fileName},#{filePath});
+	</insert>
+
+	<select id="listAll" resultType="org.young.domain.BoardVO">
+		<!-- 쿼리문 안에 > 꺽새 모양이 있으면 select을 닫는걸로 인식하기 떄문에 CDATA안에 있는 <,>꺽새모양은 연산자로 
+			인식하도록 표시해주는것 - -->
+   	<![CDATA[ 
+   		select * from tbl_board where bno>0 and writer =#{userid} order by bno desc;
+   	]]>
+	</select>
+
+	<select id="read" resultType="org.young.domain.BoardVO">
+		select * from tbl_board where bno=#{bno};
+	</select>
+</mapper>

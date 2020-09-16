@@ -1,0 +1,111 @@
+@charset "UTF-8";
+main{
+    width: 100%;
+    
+}
+#mainDiv{
+    margin: auto;
+    width: 300px;
+    text-align: center;
+}
+#login{
+    font-size: 50px;
+    margin-top: 12vh;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+    line-height: 1.1;
+}
+#mainBt1{
+    user-select: none;
+    transition: background 20ms ease-in 0s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    height: 36px;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    line-height: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 500;
+    background: rgb(225, 98, 89);
+    border: 1px solid rgb(190, 86, 67);
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 1px 2px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+#mainBt1 a{
+    color: white;
+}
+#mainBt2{
+    user-select: none;
+    transition: background 20ms ease-in 0s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    height: 36px;
+    border-radius: 3px;
+    color: rgb(55, 53, 47);
+    fill: rgb(55, 53, 47);
+    background: white;
+    font-size: 14px;
+    line-height: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 500;
+    border: 1px solid rgb(55, 53, 47);
+    width: 100%;
+    margin-top: 10px;
+  
+}
+#mainBt2 a{
+    color: black;
+}
+#userid{
+    font-size: inherit;
+    line-height: inherit;
+    border: none;
+    background: none;
+    width: 100%;
+    display: block;
+    resize: none;
+    padding: 0px;
+}
+#userpw,re_userpw{
+    font-size: inherit;
+    line-height: inherit;
+    border: none;
+    background: none;
+    width: 100%;
+    display: block;
+    resize: none;
+    padding: 0px;
+}
+#loginBt{
+    user-select: none;
+    transition: background 20ms ease-in 0s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    height: 36px;
+    border-radius: 3px;
+    color: rgb(235, 87, 87);
+    font-size: 14px;
+    line-height: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: 500;
+    background: rgb(253, 245, 242);
+    box-shadow: rgba(15, 15, 15, 0.1) 0px 1px 2px, rgba(235, 87, 87, 0.3) 0px 0px 0px 1px inset;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    width: 100%;
+}

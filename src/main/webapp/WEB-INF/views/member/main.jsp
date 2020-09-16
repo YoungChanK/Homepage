@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	String userid=(String)session.getAttribute("userid");
+%>
+
 <h1>${login.userid} , ${login.userpw}</h1>
+<%=userid%> 로그인 
+<a href="/young/board/list">list</a>
 </body>
 </html>

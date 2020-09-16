@@ -1,6 +1,8 @@
 package org.young.service;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.young.domain.MemberVO;
@@ -26,6 +28,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO login(MemberVO member) {
 		return mmapper.login(member);
+	}
+
+	@Override
+	public void Logout(HttpSession session) {
+		// TODO Auto-generated method stub
+		session.invalidate();
 	}
 	
 	

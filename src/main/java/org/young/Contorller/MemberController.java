@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.young.service.MemberService;
 import org.young.service.MemberServiceImpl;
 
@@ -67,6 +68,17 @@ public class MemberController {
 	@RequestMapping(value="login", method=RequestMethod.GET)
 	public void LoginGet()throws Exception{
 		logger.info("로그인 화면 이동");
+	}
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String Logout(HttpSession session)throws Exception{
+		meservice.Logout(session);
+		logger.info("세션값" + session.getId());
+/*		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/home");
+		mav.addObject("msg","logout");*/
+	
+		
+		return "redirect:/member/login";
 	}
 	//로그인처리
 		@RequestMapping(value="loginPost", method=RequestMethod.POST)

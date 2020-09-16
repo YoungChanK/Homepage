@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+<input type="button" value="로그아웃" onclick="location.href='/young/member/logout'">
 <table border ="1">
 	<tr>	
 		<td colspan="5"><button type="button" onclick="location.href='register'">글쓰기</button></td>

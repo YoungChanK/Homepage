@@ -29,7 +29,17 @@
     <beans:constructor-arg value="C:\\PFupload"></beans:constructor-arg>
 
     </beans:bean>
-	
+    <!-- 인터셉터 설정 -->
+	<beans:bean id = "loginInterceptor" class ="org.young.interceptor.LoginInterceptor"></beans:bean>
+	 <interceptors>
+   	<interceptor>	
+   		<mapping path="/board/*"/>
+   		<exclude-mapping path="/member/login"/>
+   		<exclude-mapping path="/member/loginPost"/>
+
+   		<beans:ref bean="loginInterceptor"/>
+   	</interceptor>
+   </interceptors>
 	
 	<context:component-scan base-package="org.young.Contorller" />
 	

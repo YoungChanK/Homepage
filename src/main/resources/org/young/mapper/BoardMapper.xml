@@ -3,6 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.young.mapper.BoardMapper">
+
+   <sql id="search">
+   <if test="type != null">
+			<!-- 제목 검색 -->
+			<if test="type == 'T'.toString()">
+				and title like concat('%',#{keyword},'%')
+			</if>
+			<!-- 내용 검색 -->
+			<if test="type == 'C'.toString()">
+				and content like concat('%',#{keyword},'%')
+			</if>
+			<!-- 작성자 검색 -->
+			<if test="type == 'W'.toString()">
+				and writer like concat('%',#{keyword},'%')
+			</if>
+			<!-- 제목과 내용 검색 -->
+			<if test="type == 'TC'.toString()">
+				and (title like concat('%',#{keyword},'%')
+				or content like concat('%',#{keyword},'%'))
+			</if>
+			<!-- 제목 내용 작성자 모두 검색 -->
+			<if test="type == 'TCW'.toString()">
+				and (title like concat('%',#{keyword},'%')
+				or content like concat('%',#{keyword},'%')
+				or writer like concat('%',#{keyword},'%'))
+			</if>
+		</if>
+   
+   </sql>
 	<insert id="create">
 		insert into tbl_board(bno,title,content,writer,fileName,filePath)
 		values(#{bno},#{title},#{content},#{writer},#{fileName},#{filePath});
@@ -19,4 +48,31 @@
 	<select id="read" resultType="org.young.domain.BoardVO">
 		select * from tbl_board where bno=#{bno};
 	</select>
+	
+<!-- 	   	<select id="listpage" resultType="org.young.domain.BoardVO">
+   	<![CDATA[ 
+   		select * from tbl_board where bno>0 order by bno desc limit #{pageStart},#{amount};
+   	]]>
+   	</select> -->
+   		<select id="listPage" resultType="org.young.domain.BoardVO">
+		select bno,title,content,writer,fileName,regdate
+		from (
+		select @rownum:=@rownum+1 as rownum, b.*
+		from (select @rownum:=0) as tmp, tbl_board as b
+		 where writer =#{userid}
+		<include refid="search"></include>
+
+		order by bno desc
+		) as boardList
+   <![CDATA[
+   where rownum > (#{pageNum}-1)*#{amount}
+   and rownum <= #{pageNum}*#{amount}
+
+   ]]>
+
+   	</select>
+   	   	   <select id="getTotalCount" resultType="int">
+   select count(*) from tbl_board  where writer =#{userid}
+   		<include refid="search"></include>
+   </select>
 </mapper>

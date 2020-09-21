@@ -3,6 +3,7 @@ package org.young.mapper;
 import java.util.List;
 
 import org.young.domain.BoardVO;
+import org.young.domain.Criteria;
 import org.young.domain.MemberVO;
 
 public interface BoardMapper {
@@ -11,5 +12,9 @@ public interface BoardMapper {
 	
 	public List<BoardVO> listAll(String userid)throws Exception;
 	
+	public List<BoardVO> listPage(Criteria cri)throws Exception;
+	
 	public BoardVO read(BoardVO vo) throws Exception;
+	
+	public int getTotalCount(Criteria cri)throws Exception;
 }

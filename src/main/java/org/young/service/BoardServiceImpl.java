@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.young.domain.BoardVO;
-import org.young.domain.MemberVO;
+import org.young.domain.Criteria;
 import org.young.mapper.BoardMapper;
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -38,5 +38,22 @@ public class BoardServiceImpl implements BoardService {
 	
 		return mapper.read(vo);
 	}
+
+
+
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return  mapper.listPage(cri);
+	}
+
+
+
+	@Override
+	public int getTotalCount(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
+	}
+	
 	
 }

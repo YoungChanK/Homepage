@@ -1,17 +1,22 @@
 package org.young.Contorller;
 
 import org.young.domain.BoardVO;
+import org.young.domain.Criteria;
 import org.young.domain.MemberVO;
 import org.young.service.BoardService;
 
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import org.young.domain.PageDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,12 +34,14 @@ public class BoardController {
 	private static final Logger logger=LoggerFactory.getLogger(BoardController.class);
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void listGet(Model model,MemberVO member,HttpServletRequest request)throws Exception {
+	public void listGet(Model model,Criteria cri,HttpServletRequest request)throws Exception {
 		HttpSession session = request.getSession();   
 		String userid=(String) session.getAttribute("userid");
-		logger.info("list....get:"+session.getAttribute("userid"));
-		model.addAttribute("list",service.listAll(userid));
-		logger.info("id값:" +userid);
+		model.addAttribute("listid",service.listAll(userid));
+		cri.setUserid(userid);
+		model.addAttribute("list",service.listPage(cri));
+		model.addAttribute("PageMaker",new PageDTO(cri,service.getTotalCount(cri)));
+	
 //		return "redirect:/board/list";
 	}
 	
@@ -66,4 +73,6 @@ public class BoardController {
 		model.addAttribute("modify",service.read(board));
 	
 	}
+
+
 }

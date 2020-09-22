@@ -3,6 +3,8 @@ package org.young.service;
 
 
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.young.domain.MemberVO;
@@ -29,6 +31,9 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO member) {
 		return mmapper.login(member);
 	}
+	
+
+	
 
 
 	

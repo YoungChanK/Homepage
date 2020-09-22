@@ -48,6 +48,12 @@
 	<select id="read" resultType="org.young.domain.BoardVO">
 		select * from tbl_board where bno=#{bno};
 	</select>
+	 	<update id="update">
+   		update tbl_board set title = #{title}, content=#{content},regdate=now() where bno=#{bno};
+   	</update>
+   	<delete id="delete">
+   		delete from tbl_board where bno =#{bno};
+   	</delete>
 	
 <!-- 	   	<select id="listpage" resultType="org.young.domain.BoardVO">
    	<![CDATA[ 

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("board")
@@ -67,12 +68,28 @@ public class BoardController {
 		
 	}
 	
+
+	//수정화면으로 이동
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public void modifyGet(BoardVO board, Model model) throws Exception{
 		logger.info("modify Get........."+board);
 		model.addAttribute("modify",service.read(board));
 	
 	}
-
+	//실제 수정이 이루어 지는곳
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modifyPost(BoardVO board,RedirectAttributes rttr) throws Exception{
+		logger.info("modify post........."+board);
+		service.update(board);
+		rttr.addFlashAttribute("msg","SUCCESS");
+		return "redirect:/board/list";
+	}
+	@RequestMapping(value = "remove", method = RequestMethod.POST)
+	public String removePost(BoardVO board,RedirectAttributes rttr) throws Exception{
+		logger.info("remove post........."+board);
+		service.delete(board);
+		rttr.addFlashAttribute("msg","DSUCCESS");
+		return "redirect:/board/list";
+	}
 
 }

@@ -24,6 +24,7 @@ $(document).ready(function() {
 	        maxHeight: null,
 	        focus: true, 
 	        lang : 'ko-KR'
+	        
 	  });
 	});
 </script>

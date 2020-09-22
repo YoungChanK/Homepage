@@ -38,7 +38,18 @@ public class BoardServiceImpl implements BoardService {
 	
 		return mapper.read(vo);
 	}
-
+	@Override
+	public void update(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.update(vo);
+	}
+//	@Transactional
+	@Override
+	public void delete(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.delete(vo);
+//		attachmapper.delete(vo);
+	}
 
 
 	@Override

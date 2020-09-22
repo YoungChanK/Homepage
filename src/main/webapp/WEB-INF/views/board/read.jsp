@@ -7,9 +7,28 @@
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/read.js"></script>
 <script type="text/javascript" src="../resources/js/ajaxtest.js"></script>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<script src="../resources/js/summernote-ko-KR.js"></script>
 <!-- <link  rel="stylesheet" type="text/css" href="../resources/css/read.css"> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+	    	placeholder: 'content',
+	        minHeight: 370,
+	        maxHeight: null,
+	        focus: true, 
+	        lang : 'ko-KR',
+	        airMode:true 
+	  });
+	});
+
+</script>
 </head>
 <body>
 
@@ -25,7 +44,7 @@
 	
 			</tr>
 			<tr>
-				<td colspan="2">${read.content}</td>
+				<td colspan="2"><textarea id="summernote" name="content" readOnly>${read.content}</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">${read.fileName}</td>

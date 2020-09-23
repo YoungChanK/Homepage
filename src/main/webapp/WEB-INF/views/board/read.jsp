@@ -34,6 +34,7 @@ $(document).ready(function() {
 
 	<form role="form" >
 		<input type="hidden" name="bno" id="bno" value="${read.bno}">
+		<input type="hidden" id="filePath" value="${read.filePath}">
 <%-- 		<input type="text"   name="pageNum" value="${cri.pageNum}"> --%>
 		<table border="1">
 			<tr>
@@ -50,7 +51,7 @@ $(document).ready(function() {
 				<td colspan="2">${read.fileName}</td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href ="/young/upload/download?fileName=${read.filePath}">${read.fileName}</a></td>
+				<td colspan="2"><a  class="dwload">${read.fileName}</a></td>
 			</tr>
 			<tr>
 				<td colspan="2">

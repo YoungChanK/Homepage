@@ -105,17 +105,63 @@ $(document).ready(function(){
 		var str="";
 		$(".uploadResult ul li").each(function(i,obj){
 			var jobj =$(obj);
-			console.log(jobj);
-			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("uploadpath")+"'>";
-			str+="<input type='hidden' name='attachList["+i+"].fileType' value='"+jobj.data("filetype")+"'>";
+			console.log("jobj: "+jobj);
+			str+="<input type='text' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+			str+="<input type='text' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+			str+="<input type='text' name='attachList["+i+"].uploadPath' value='"+jobj.data("uploadpath")+"'>";
+			str+="<input type='text' name='attachList["+i+"].fileType' value='"+jobj.data("filetype")+"'>";
 		})
 //		$(".uploadResult1").html(str);
 		//formObj에 str을 추가(append)하여 submit을 하라.
 		//submit을 하면 action으로 간다 ->boardController에서 value값이 register인것을 찾아감
 		formObj.append(str).submit();
+		alert("완료");
 })
 //글쓰기 버튼을 클릭하면 이벤트end
+
+
+
+
+
+	$(".fileDrop").on("drop",function(e){
+		e.preventDefault();
+
+		var files = e.originalEvent.dataTransfer.files;
+
+		var formData = new FormData(); //uploadAjax.jsp에 form태그가 없다. 대체할 무언가가 필요한데 , FormData()
+		for(var i=0; i<files.length;i++){
+			if(!checkExtension(files[i].name,files[i].size)){
+				return false;
+			}
+		formData.append("file",files[i]);
+		}
+		$.ajax({
+			url:"/young/upload/uploadajax",
+			data:formData,
+			dataType:"json",
+			//processData 와 contentType은 파일업로드시 false가 되어야함.
+			processData:false,
+			contentType:false,
+			type:'POST',
+			success:function(data){
+				console.log(data);
+			       alert("업로드맨");
+			       shwoUploadFile(data);
+			}
+		})
+	
+		
+	})// drop 이벤트 end
+
+
+
+
+
+
+
+
+
+
+
 })
 

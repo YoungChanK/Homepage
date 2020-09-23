@@ -5,7 +5,12 @@ import org.young.domain.Criteria;
 import org.young.domain.MemberVO;
 import org.young.service.BoardService;
 
+import java.io.File;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -57,12 +63,60 @@ public class BoardController {
 	public void registerGET() throws Exception{
 		logger.info("register get.......");
 	}
+	 private String getFolder() {
+		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		   Date date = new Date(); //오늘날짜를 date변수에 저장
+		   	String str=sdf.format(date);
+		   	System.out.println("오늘 날짜 := "+str); //str :2020-08-25 => 2020\\08\\25
+		   	
+		   	return str.replace("-",File.separator);
+		   }
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String registerPOST(BoardVO board, Model model) throws Exception{
+	public String registerPOST(BoardVO board, Model model,MultipartFile[] file) throws Exception{
 		logger.info("register POST.......");
 		logger.info("boardVO에 저장되어 있는 값 확인"+board);
+		String fileName="";
+		String filePath="";
+		String uploadPath="C:\\PFupload";
+		   File uploadFolder=new File(uploadPath,getFolder());
+		
+		   logger.info("파일업로드 폴더"+uploadFolder);
+		   //년월일 폴더 만들기
+		   //exists() 메소드를 활용하여 생성하고자 하는 폴더가 존재하지 않으면 폴더를 만들어라.
+		   if(uploadFolder.exists()==false) {
+			   uploadFolder.mkdirs(); //mkdir메소드는 폴더를 만들어 주는 메소드
+		   }
+		 for(MultipartFile multipartFile : file) {
+	    	  
+	    	  
+	         logger.info("파일명 : "+multipartFile.getOriginalFilename());
+	         logger.info("파일명 : "+multipartFile.getSize());
+	         logger.info("파일명 : "+multipartFile.getContentType());
+	         logger.info("파일 저장 위치 : "+uploadPath);
+	         
+	         fileName =multipartFile.getOriginalFilename(); //fileName
+	         String uploadFileName=multipartFile.getOriginalFilename();
+	         UUID uuid=UUID.randomUUID();
+	         uploadFileName = uuid+"_"+uploadFileName;
+	         filePath=uploadFolder+"\\"+uploadFileName;
+	         filePath=filePath.substring(12);
+//	         filePath=filePath.replace("\\", "%");
+	        
+	         logger.info("filePath:"+ filePath);
+	      
+	         
+	         try {
+	        	 File saveFile = new File(uploadFolder,uploadFileName);
+	        	 multipartFile.transferTo(saveFile);
+	         }catch(Exception e) {
+	            logger.info(e.getMessage());
+	         }
+	      }
+		logger.info("업로드");
+		board.setFilePath(filePath);
+		board.setFileName(fileName);
 		service.create(board); //insert sql
-
+//		model.addAttribute("fileName",fileName);
 		model.addAttribute("result","success");
 		return "redirect://board/list";
 		

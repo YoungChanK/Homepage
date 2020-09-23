@@ -13,6 +13,7 @@ import java.util.UUID;
 
 
 import org.young.domain.AttachFileDTO;
+import org.young.domain.BoardVO;
 
 import net.coobird.thumbnailator.Thumbnailator;
 
@@ -166,6 +167,7 @@ public class UploadController {
 	   //download(업로드 파일이 이미지가 아닌거)
 	   @RequestMapping(value = "download", method = RequestMethod.GET,produces =MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	   public ResponseEntity<Resource> downloadFile(String fileName) throws Exception {
+		   
 		   logger.info("download file : "+fileName);
 		   Resource resource = new FileSystemResource("C:\\PFupload\\"+fileName);
 		   logger.info("resource  : "+resource);

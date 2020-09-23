@@ -17,21 +17,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 <script src="../resources/js/summernote-ko-KR.js"></script>
 <script>
+var i=1;
 $(document).ready(function() {
+	
 	  $('#summernote').summernote({
  	    	placeholder: 'content',
 	        minHeight: 370,
 	        maxHeight: null,
 	        focus: true, 
 	        lang : 'ko-KR'
-	        
-	  });
-	});
+	  })
+	  
+	  
+/* 	   $("#uploadadd").click(function(){
+		  $(".tr1").append("<tr id='tr"+i+"'><input type='file' name='file' id='upload' multiple></td></tr>")
+		  i++;
+	  }) */
+	  $('#uploadadd').click (function () {  
+		  	
+                $('.tr1').append (                        
+                    '<td><input type="file" name="file" multiple> <input type="button" class="btnRemove" value="Remove"><br></td>'                    
+                ); // end append 
+        	  
+                $('.btnRemove').on('click', function () { 
+                    $(this).prev().remove (); // remove the textbox
+                    $(this).next ().remove (); // remove the <br>
+                    $(this).remove (); // remove the button
+                });
+            }); // end click    
+	
+	})
+
 </script>
 </head>
 <body>
 <h1>게시판 글쓰기화면. ${result}</h1>
-<form role="form" action="/young/board/register" method ="post">
+<form role="form" action="/young/board/register" method ="post" enctype="multipart/form-data">
 
 	제목 :   <input type="text" name="title">
 <!-- 	내용 :   <textarea name="content"></textarea> -->
@@ -39,15 +60,17 @@ $(document).ready(function() {
 		<textarea name="fileName" id="fileName" readOnly></textarea>
 		<textarea name="filePath" id="filePath" readOnly></textarea>
 	<textarea id="summernote" name="content"></textarea>
+		<table>
+		<tr class="tr1">
+			<td><input type="file" name="file" multiple></td>
+		</tr>
+	</table>
 	<input type="submit" value="글쓰기">
    <button type="button" onclick="location.href='list'">목록</button>
 </form>
-
+<button id="uploadadd">추가</button>
 <div class="fileDrop">파일 업로드 Drag  Drop</div>
-<form action="uploadForm" method="POST" enctype="multipart/form-data">
-<input type="file" name="file" multiple>
-<input type="submit">
-</form>
+
 <!-- 파일업로드 drag&drop 결과 이미지 list -->
 <div class="uploadResult">
 

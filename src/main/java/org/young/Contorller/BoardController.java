@@ -6,6 +6,7 @@ import org.young.domain.MemberVO;
 import org.young.service.BoardService;
 
 import java.io.File;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,10 +76,11 @@ public class BoardController {
 	public String registerPOST(BoardVO board, Model model,MultipartFile[] file) throws Exception{
 		logger.info("register POST.......");
 		logger.info("boardVO에 저장되어 있는 값 확인"+board);
+		
 		String fileName="";
 		String filePath="";
 		String uploadPath="C:\\PFupload";
-		   File uploadFolder=new File(uploadPath,getFolder());
+		File uploadFolder=new File(uploadPath,getFolder());
 		
 		   logger.info("파일업로드 폴더"+uploadFolder);
 		   //년월일 폴더 만들기
@@ -86,12 +88,14 @@ public class BoardController {
 		   if(uploadFolder.exists()==false) {
 			   uploadFolder.mkdirs(); //mkdir메소드는 폴더를 만들어 주는 메소드
 		   }
-		 for(MultipartFile multipartFile : file) {
-	    	  
+		   
+		   
+		   for(MultipartFile multipartFile : file) {
+	    	  if(multipartFile.getSize()!=0) {
 	    	  
 	         logger.info("파일명 : "+multipartFile.getOriginalFilename());
-	         logger.info("파일명 : "+multipartFile.getSize());
-	         logger.info("파일명 : "+multipartFile.getContentType());
+	         logger.info("파일사이즈 : "+multipartFile.getSize());
+	         logger.info("파일타입 : "+multipartFile.getContentType());
 	         logger.info("파일 저장 위치 : "+uploadPath);
 	         
 	         fileName =multipartFile.getOriginalFilename(); //fileName
@@ -115,6 +119,7 @@ public class BoardController {
 		logger.info("업로드");
 		board.setFilePath(filePath);
 		board.setFileName(fileName);
+		   }
 		service.create(board); //insert sql
 //		model.addAttribute("fileName",fileName);
 		model.addAttribute("result","success");
@@ -145,5 +150,30 @@ public class BoardController {
 		rttr.addFlashAttribute("msg","DSUCCESS");
 		return "redirect:/board/list";
 	}
+	
+		//파일삭제
+	   @RequestMapping(value = "deleteFile", method = RequestMethod.POST)
+	   public ResponseEntity<String> deleteFile(String fileName) throws Exception{
+		   logger.info("fileName :"+fileName);
+	
+		   
+		   File file;
 
+		   try {	
+			   //경로에 있는 % 를 \ 로 변경
+			   file = new File("C:\\PFupload\\"+URLDecoder.decode(fileName,"UTF-8"));
+			   //썸내일 이미지 파일 삭제
+			   file.delete();
+			
+		} catch (UnsupportedOperationException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		   
+		   
+		   
+		   return new ResponseEntity<String>("deleted"/*ajax의 success:funcion(data)에 들어가서 출력*/,HttpStatus.OK/*통신이 성공했으면*/) ;
+		   
+	   }
+	   
 }

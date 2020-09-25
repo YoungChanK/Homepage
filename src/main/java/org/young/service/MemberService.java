@@ -10,6 +10,7 @@ public interface MemberService {
 	public String idCheck(String userid);
 	//로그인 정보 조회
 	public MemberVO login(MemberVO member);
-	//로그아웃
+	//회원정보수정
+	public void Membermodify(MemberVO member);
 
 }

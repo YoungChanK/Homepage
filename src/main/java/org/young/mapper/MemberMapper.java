@@ -13,4 +13,6 @@ public interface MemberMapper {
 	public MemberVO login(MemberVO vo);
 	
 	public void Logout(HttpSession session);
+	//회원정보수정
+	public void Membermodify(MemberVO vo);
 }

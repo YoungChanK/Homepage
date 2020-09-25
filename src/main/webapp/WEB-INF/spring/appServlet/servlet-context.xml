@@ -34,6 +34,7 @@
 	 <interceptors>
    	<interceptor>	
    		<mapping path="/board/*"/>
+   		<mapping path="/member/membermodify"/>
    		<exclude-mapping path="/member/login"/>
    		<exclude-mapping path="/member/loginPost"/>
 

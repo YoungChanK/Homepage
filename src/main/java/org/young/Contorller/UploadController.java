@@ -195,9 +195,9 @@ public class UploadController {
 	   //파일 삭제 start
 	   //파일 삭제 end
 	   @RequestMapping(value = "deleteFile", method = RequestMethod.POST)
-	   public ResponseEntity<String> deleteFile(String fileName,String type) throws Exception{
+	   public ResponseEntity<String> deleteFile(String fileName) throws Exception{
 		   logger.info("fileName :"+fileName);
-		   logger.info("type : "+type);
+	
 		   
 		   File file;
 
@@ -206,14 +206,7 @@ public class UploadController {
 			   file = new File("C:\\PFupload\\"+URLDecoder.decode(fileName,"UTF-8"));
 			   //썸내일 이미지 파일 삭제
 			   file.delete();
-			   if(type.equals("image")) {
-				   //절대경로에 있는 파일의 s_를 제거
-				   String originalFile=file.getAbsolutePath().replace("s_","");
-				   file = new File(originalFile);
-				   //원본 이미지 삭제
-				   file.delete();
-
-			   }
+			
 		} catch (UnsupportedOperationException e) {
 			// TODO: handle exception
 			e.printStackTrace();

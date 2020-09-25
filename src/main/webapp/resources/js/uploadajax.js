@@ -80,21 +80,22 @@ $(document).ready(function(){
 		
 	})// drop 이벤트 end
 	
-	   $(".uploadResult").on("click", "span", function(e){
+	   $("#uploadtd").on("click", "button", function(e){
 		      //alert("x를 클릭")
 		   
-		   var fileName = $(this).data("file")//파일명을 저장
-		   var type=$(this).data("type")//이미지 파일
-//		   alert(fileName);
+		   var fileName = $("#filePath").val();//파일명을 저장
+		  
+//		   alert(fileName+"asd");
 //		   alert(type);
 		   
 		      $.ajax({
-		         url : '/young/upload/deleteFile',
-		         data: {fileName:fileName,type:type}, //어떤파일 삭제해야 하는지(파일명),
+		         url : 'deleteFile',
+		         data: {fileName:fileName}, //어떤파일 삭제해야 하는지(파일명),
 		         dataType: 'text',
 		         type: 'POST',
 		         success: function(data){
-		            alert(data);
+		   
+		            $("#uploadtd").remove();
 		         }
 		      })
 		      

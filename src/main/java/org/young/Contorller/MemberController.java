@@ -39,8 +39,18 @@ public class MemberController {
 		return "redirect:/member/login";
 		
 //		MemberVO member=meservice.createMember(vo);
+	}
+	//회원수정
+	@RequestMapping(value="membermodify",method=RequestMethod.GET)
+	public void MembermodifyGet()throws Exception{
+		logger.info("회원수정 화면");
 		
-	
+	}
+	@RequestMapping(value="membermodify",method=RequestMethod.POST)
+	public String MembermodifyPost(MemberVO vo)throws Exception{
+		meservice.Membermodify(vo);
+		logger.info("vo값은: "+vo);
+		return "redirect:/member/login";
 	}
 	@ResponseBody
 	@RequestMapping(value = "idCheck",method = RequestMethod.POST)

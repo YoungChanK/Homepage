@@ -4,6 +4,7 @@ package org.young.service;
 
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,14 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO member) {
 		return mmapper.login(member);
 	}
+
+	@Override
+	public void Membermodify(MemberVO member) {
+		// TODO Auto-generated method stub
+		 mmapper.Membermodify(member);
+	}
+	
+	
 	
 
 	

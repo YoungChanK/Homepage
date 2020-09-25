@@ -6,7 +6,7 @@
 <head>
 <script type="text/javascript" src="../resources/js/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../resources/js/read.js"></script>
-<script type="text/javascript" src="../resources/js/ajaxtest.js"></script>
+<script type="text/javascript" src="../resources/js/uploadajax.js"></script>
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 	<form role="form" >
 		<input type="hidden" name="bno" id="bno" value="${read.bno}">
-		<input type="hidden" id="filePath" value="${read.filePath}">
+		<input type="hidden" id="filePath" name="fileName" value="${read.filePath}">
 <%-- 		<input type="text"   name="pageNum" value="${cri.pageNum}"> --%>
 		<table border="1">
 			<tr>
@@ -51,7 +51,8 @@ $(document).ready(function() {
 				<td colspan="2">${read.fileName}</td>
 			</tr>
 			<tr>
-				<td colspan="2"><a  class="dwload">${read.fileName}</a></td>
+			<%-- 	<td colspan="2" id="uploadtd"><a href= "/young/upload/download?fileName=${read.filePath}"class="dwload">${read.fileName}</a><button>x</button></td> --%>
+				<td colspan="2" id="uploadtd"><a class="dwload">${read.fileName}</a><button>x</button></td>
 			</tr>
 			<tr>
 				<td colspan="2">

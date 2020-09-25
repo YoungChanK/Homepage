@@ -115,7 +115,7 @@ $(document).ready(function(){
 		//formObj에 str을 추가(append)하여 submit을 하라.
 		//submit을 하면 action으로 간다 ->boardController에서 value값이 register인것을 찾아감
 		formObj.append(str).submit();
-		alert("완료");
+		
 })
 //글쓰기 버튼을 클릭하면 이벤트end
 

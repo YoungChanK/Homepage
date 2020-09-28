@@ -153,7 +153,7 @@ public class BoardController {
 	
 		//파일삭제
 	   @RequestMapping(value = "deleteFile", method = RequestMethod.POST)
-	   public ResponseEntity<String> deleteFile(String fileName) throws Exception{
+	   public ResponseEntity<String> deleteFile(String fileName,BoardVO board) throws Exception{
 		   logger.info("fileName :"+fileName);
 	
 		   
@@ -164,7 +164,8 @@ public class BoardController {
 			   file = new File("C:\\PFupload\\"+URLDecoder.decode(fileName,"UTF-8"));
 			   //썸내일 이미지 파일 삭제
 			   file.delete();
-			
+			   service.deletefile(board);
+			   logger.info("board   :  "+board);
 		} catch (UnsupportedOperationException e) {
 			// TODO: handle exception
 			e.printStackTrace();

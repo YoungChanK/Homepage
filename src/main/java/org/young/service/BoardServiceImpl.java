@@ -53,6 +53,14 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
+	public void deletefile(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.deletefile(vo);
+	}
+
+
+
+	@Override
 	public List<BoardVO> listPage(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return  mapper.listPage(cri);

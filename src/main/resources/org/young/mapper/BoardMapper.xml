@@ -54,7 +54,9 @@
    	<delete id="delete">
    		delete from tbl_board where bno =#{bno};
    	</delete>
-	
+	<update id="deletefile">
+		update tbl_board set fileName=null, filePath=null where bno=#{bno}
+	</update>
 <!-- 	   	<select id="listpage" resultType="org.young.domain.BoardVO">
    	<![CDATA[ 
    		select * from tbl_board where bno>0 order by bno desc limit #{pageStart},#{amount};

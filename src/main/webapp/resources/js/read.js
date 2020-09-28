@@ -4,16 +4,18 @@
 
 //read.jsp가 준비가 되면 실행하라
 $(document).ready(function(){
-	
 	var filePath=$("#filePath").val();
+	console.log("filePath :" + filePath);
+	if(filePath==""){
+		 $("#uploadtr").detach();
+//		 $("#uploadbt").detach();
+	}else if(filePath!=""){
 	filePath=encodeURIComponent(filePath);
 	$(".dwload").attr("href", "/young/upload/download?fileName="+filePath);
+	$(".dwload").append("<button id='uploadbt'>X</button>")
+	}
+ 
 	
-//	$(".dwload").on("click",function(){
-//		var filePath=$("#filePath").val();
-//		filePath=encodeURIComponent(filePath);
-//		colsole.log(filePath);
-//	})
 	//form의 role이 form인것을 선택
 	var formObj = $("form[role='form']");
 	

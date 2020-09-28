@@ -50,9 +50,8 @@ $(document).ready(function() {
 			<tr>
 				<td colspan="2">${read.fileName}</td>
 			</tr>
-			<tr>
-			<%-- 	<td colspan="2" id="uploadtd"><a href= "/young/upload/download?fileName=${read.filePath}"class="dwload">${read.fileName}</a><button>x</button></td> --%>
-				<td colspan="2" id="uploadtd"><a class="dwload">${read.fileName}</a><button>x</button></td>
+			<tr id="uploadtr">
+				<td colspan="2" id="uploadtd"><a  class="dwload">${read.fileName}</a></td>
 			</tr>
 			<tr>
 				<td colspan="2">

@@ -84,18 +84,19 @@ $(document).ready(function(){
 		      //alert("x를 클릭")
 		   
 		   var fileName = $("#filePath").val();//파일명을 저장
-		  
+		   var bno = $("#bno").val();
 //		   alert(fileName+"asd");
 //		   alert(type);
 		   
 		      $.ajax({
 		         url : 'deleteFile',
-		         data: {fileName:fileName}, //어떤파일 삭제해야 하는지(파일명),
+		         data: {fileName:fileName,bno:bno}, //어떤파일 삭제해야 하는지(파일명),
 		         dataType: 'text',
 		         type: 'POST',
 		         success: function(data){
 		   
-		            $("#uploadtd").remove();
+		            $("#uploadtr").remove();
+//		            $("#uploadbt").remove();
 		         }
 		      })
 		      

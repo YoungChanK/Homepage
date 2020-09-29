@@ -3,6 +3,8 @@ package org.young.service;
 
 
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
@@ -38,7 +40,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		 mmapper.Membermodify(member);
 	}
-	
+
+	@Override
+	public List<MemberVO> memberinfo(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return mmapper.memberinfo(vo);
+	}
+
+
 	
 	
 

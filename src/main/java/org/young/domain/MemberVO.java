@@ -9,6 +9,7 @@ public class MemberVO {
 	private String email;
 	private Date regdate;
 	private Date updatedate;
+	private boolean authority;
 	public String getUserid() {
 		return userid;
 	}
@@ -45,10 +46,18 @@ public class MemberVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+	
+	
+	public boolean isAuthority() {
+		return authority;
+	}
+	public void setAuthority(boolean authority) {
+		this.authority = authority;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", email=" + email
-				+ ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ ", regdate=" + regdate + ", updatedate=" + updatedate + ", authority=" + authority + "]";
 	}
 	
 	

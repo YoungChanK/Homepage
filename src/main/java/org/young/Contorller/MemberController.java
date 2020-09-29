@@ -2,6 +2,7 @@ package org.young.Contorller;
 
 import org.young.domain.MemberVO;
 
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -102,14 +103,24 @@ public class MemberController {
 			if(vo !=null) { //로그인되었으면
 				session.setAttribute("login",vo);
 				session.setAttribute("userid",vo.getUserid());
+				session.setAttribute("auto",vo.isAuthority());
 				logger.info("세션값 : " + session.getAttribute("login"));
 				logger.info("ID값 : " + session.getAttribute("userid"));
+				logger.info("권한값 : " + session.getAttribute("auto"));
 				return "redirect:/board/list";
 				}
 			else { //로그인이 되어 있지않았으면 login.jsp로 이동
 				logger.info("로그인실패");
 				return "redirect:/member/login";
 			}		
+		}
+		
+		@RequestMapping(value="admin", method=RequestMethod.GET)
+		public void adminGet(MemberVO member,Model model)throws Exception{
+			List<MemberVO> vo=meservice.memberinfo(member);
+			model.addAttribute("memberinfo",meservice.memberinfo(member));
+			
+			logger.info(vo.toString());
 		}
 		
 	

@@ -29,6 +29,7 @@ $(document).ready(function() {
 	});
 
 </script>
+<%@ include file="../member/header.jsp" %>
 </head>
 <body>
 

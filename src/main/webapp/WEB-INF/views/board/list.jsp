@@ -58,9 +58,9 @@
 		<select name="type">
 			<option value="T" <c:out value="${PageMaker.cri.type eq 'T'?'selected':''}"/>>제목
 			<option value="C" <c:out value="${PageMaker.cri.type eq 'C'?'selected':''}"/>>내용
-			<option value="W"<c:out value="${PageMaker.cri.type eq 'W'?'selected':''}"/>>작성자
+<%-- 			<option value="W"<c:out value="${PageMaker.cri.type eq 'W'?'selected':''}"/>>작성자 --%>
 			<option value="TC"<c:out value="${PageMaker.cri.type eq 'TC'?'selected':''}"/>>제목+내용
-			<option value="TCW" <c:out value="${PageMaker.cri.type eq 'TCW'?'selected':''}"/>>제목+내용+작성자
+<%-- 			<option value="TCW" <c:out value="${PageMaker.cri.type eq 'TCW'?'selected':''}"/>>제목+내용+작성자 --%>
 		</select> <input type="text" name="keyword"> <input type="submit"
 			value="검색">
 	</form> 

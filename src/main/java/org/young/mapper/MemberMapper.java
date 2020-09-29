@@ -1,5 +1,7 @@
 package org.young.mapper;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.young.domain.MemberVO;
@@ -15,4 +17,6 @@ public interface MemberMapper {
 	public void Logout(HttpSession session);
 	//회원정보수정
 	public void Membermodify(MemberVO vo);
+	//관리자모드
+	public List<MemberVO> memberinfo(MemberVO vo)throws Exception;
 }

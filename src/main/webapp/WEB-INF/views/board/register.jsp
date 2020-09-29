@@ -49,6 +49,7 @@ $(document).ready(function() {
 	})
 
 </script>
+<%@ include file="../member/header.jsp" %>
 </head>
 <body>
 <h1>게시판 글쓰기화면. ${result}</h1>

@@ -1,5 +1,7 @@
 package org.young.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.young.domain.MemberVO;
@@ -12,5 +14,5 @@ public interface MemberService {
 	public MemberVO login(MemberVO member);
 	//회원정보수정
 	public void Membermodify(MemberVO member);
-
+	public List<MemberVO> memberinfo(MemberVO vo)throws Exception;
 }

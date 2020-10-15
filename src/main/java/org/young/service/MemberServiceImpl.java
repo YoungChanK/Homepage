@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.young.domain.BoardVO;
 import org.young.domain.MemberVO;
 import org.young.mapper.MemberMapper;
 @Service
@@ -47,7 +48,28 @@ public class MemberServiceImpl implements MemberService{
 		return mmapper.memberinfo(vo);
 	}
 
+	@Override
+	public MemberVO inforead(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return mmapper.inforead(vo);
+		
+	}
 
+	@Override
+	public void update(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		mmapper.update(vo);
+	}
+
+	@Override
+	public void delete(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		mmapper.delete(vo);
+		
+	}
+
+
+	
 	
 	
 

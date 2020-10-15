@@ -30,18 +30,13 @@
 
 	<c:forEach items="${memberinfo}" var="member">
 	<tr>
-		<td><input type="text" value="${member.userid}" style="border :none;" readOnly></td>
-		<td><input type="text" value="${member.userpw}" style="border :none;"></td>
-		<td><input type="text" value="${member.username}" style="border :none;"></td>
-		<td><input type="text" value="${member.email}" style="border :none;"></td>
-		<td><input type="text" value="${member.regdate}" style="border :none;"></td>
-		<td><input type="text" value="${member.updatedate}" style="border :none;"></td>
-		<td><select name="authority" size=1>
-		 <option value=1> ${member.authority}</option>
-		 <option value=2> ${!member.authority}</option>
-		</select></td>
-		<td><button id="${member.userid}">수정</button></td>
-		<td><button class="delete-btn">삭제</button></td>
+		<td><a href = "/young/member/inforead?userid=${member.userid}">${member.userid}</a></td>
+		<td>${member.userpw}</td>
+		<td>${member.username}</td>
+		<td>${member.email}</td>
+		<td>${member.regdate}</td>
+		<td>${member.updatedate}</td>
+		<td>${member.authority}</td>
 
 	</tr>
 	
@@ -53,5 +48,5 @@
 
 </table>
 
-</body>
+</body> 
 </html>

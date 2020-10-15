@@ -1,5 +1,6 @@
 package org.young.Contorller;
 
+import org.young.domain.BoardVO;
 import org.young.domain.MemberVO;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.young.service.BoardService;
 import org.young.service.MemberService;
 
 
@@ -25,6 +28,7 @@ public class MemberController {
 	@Autowired
 	private MemberService meservice;
 	
+
 	//회원가입 화면
 	@RequestMapping(value="member", method=RequestMethod.GET)
 	public void MemberGet()throws Exception{
@@ -121,6 +125,29 @@ public class MemberController {
 			model.addAttribute("memberinfo",meservice.memberinfo(member));
 			
 			logger.info(vo.toString());
+		}
+		@RequestMapping(value="inforead", method=RequestMethod.GET)
+		public void inforeadGet(MemberVO member,Model model)throws Exception{
+			logger.info("inforead Get"+member);
+			model.addAttribute("inforead",meservice.inforead(member));
+			
+		
+		}
+
+		//실제 수정이 이루어 지는곳
+		@RequestMapping(value = "modify", method = RequestMethod.POST)
+		public String modifyPost(MemberVO member,RedirectAttributes rttr) throws Exception{
+			logger.info("modify post........."+member);
+			meservice.update(member);
+			rttr.addFlashAttribute("msg","SUCCESS");
+			return "redirect:/member/admin";
+		}
+		@RequestMapping(value = "remove", method = RequestMethod.POST)
+		public String removePost(MemberVO member,RedirectAttributes rttr) throws Exception{
+			logger.info("remove post........."+member);
+			meservice.delete(member);
+			rttr.addFlashAttribute("msg","DSUCCESS");
+			return "redirect:/member/admin";
 		}
 		
 	

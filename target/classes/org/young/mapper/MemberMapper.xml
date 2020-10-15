@@ -20,5 +20,13 @@
 	<select id="memberinfo" resultType="org.young.domain.MemberVO">
 		select * from tbl_member;
 	</select>
-  
+	<select id="inforead"  resultType="org.young.domain.MemberVO">
+		select * from tbl_member where userid=#{userid};
+	</select>
+  	 <update id="update">
+   		update tbl_member set userpw = #{userpw}, username=#{username},email=#{email},authority=#{authority} where userid=#{userid};
+   	</update>
+   	<delete id="delete">
+   		delete from tbl_member where userid =#{userid};
+   	</delete>
   </mapper>
